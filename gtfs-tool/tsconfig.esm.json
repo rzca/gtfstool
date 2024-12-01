@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext",
+        "outDir": "./dist/esm",
+        "moduleResolution": "bundler",
+
+        /* building for a library: */
+        "declaration": true,
+        "declarationMap": true,
+    },
+    "include": [
+        "src/index.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ],
+}

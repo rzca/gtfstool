@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "esModuleInterop": true,
+        "target": "es2017",
+        "module": "commonjs",
+        "outDir": "./dist/cjs",
+
+        /* building for a library: */
+        "declaration": true,
+        "declarationMap": true,
+    },
+    "include": [
+        "src/index.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ],
+}

@@ -1,20 +1,22 @@
 {
   "name": "gtfs-tool",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "converter for GTFS",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
+
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
-    }
+    "require": "./dist/cjs/index.js",
+    "import": "./dist/esm/index.js"
   },
+  "files": ["README.md", "dist"],
   "scripts": {
     "clean": "rimraf dist",
     "prebuild": "npm run clean",
-    "build": "tsc",
+    "build": "npm run build:cjs && npm run build:esm",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build:esm": "tsc -p tsconfig.esm.json",
     "preversion": "npm run build",
     "postversion": "git push --follow-tags",
     "test": "vitest"

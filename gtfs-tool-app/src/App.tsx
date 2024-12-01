@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import * as gtfs from "gtfs-tool";
+import { toKml } from "gtfs-tool";
 import './App.css'
 
 function App() {
@@ -9,9 +9,20 @@ function App() {
   useEffect(() => {
     async function getKml() {
       if (buf != undefined) {
-        const kml = await gtfs.toKml(buf);
+        const kml = await toKml(buf);
         console.log(kml);
         setKml(kml);
+
+        const kmlBlob = new Blob([kml], { type: "application/vnd.google-earth.kml+xml" });
+        const url = window.URL.createObjectURL(kmlBlob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = "gtfs_converter_output.kml";
+
+        document.body.appendChild(a); // we need to append the element to the dom -> otherwise it will not work in firefox
+        a.click();
+        a.remove();  //afterwards we remove the element again
+        // callback({msg: 'ok'})
       }
     }
 
@@ -24,13 +35,12 @@ function App() {
       const buffer = await file.arrayBuffer();
       setBuf(buffer);
     }
-
   }
 
   return (
     <>
 
-      <h1>GTFS to KML</h1>
+      <h1>GTFS to KML Converter</h1>
       <div className="card">
 
         <input type="file" onChange={e => e.target.files != null ? handleFileUpload(e.target.files) : undefined} />

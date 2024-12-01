@@ -1,4 +1,5 @@
 import JSZip from "jszip";
+import simplify from "simplify-js";
 
 export const add = (a: number, b: number) => a + b;
 
@@ -18,14 +19,14 @@ const loadRoutes = (text: string) => {
     return routes;
 }
 
-interface IShape {
+interface IShapePoint {
     shapeId: string;
     shapePtLat: string;
     shapePtLon: string;
     shapePtSequence: string;
 }
 
-const loadShapes = (text: string): IShape[] => {
+const loadShapes = (text: string): IShapePoint[] => {
     const rows = text.split("\n").map(line => line.split(","));
 
     const data = [];
@@ -78,7 +79,7 @@ const loadTrips = (text: string) => {
     return shapeToRouteMap;
 }
 
-const groupLinesByShapeId = (data: { shapeId: string }[]): { [shapeId: string]: IShape[] } => {
+const groupLinesByShapeId = (data: IShapePoint[]): { [shapeId: string]: IShapePoint[] } => {
     const groupedData: { [shapeId: string]: any[] } = {};
 
     data.forEach((row) => {
@@ -87,9 +88,26 @@ const groupLinesByShapeId = (data: { shapeId: string }[]): { [shapeId: string]: 
             groupedData[shapeId] = [];
         }
 
+        // const simplifiedShapePoints = simplifyShape(row)
+
         groupedData[shapeId]!.push(row);
     });
+
     return groupedData;
+}
+
+const simplifyShape = (shapePoints: IShapePoint[]): IShapePoint[] => {
+    console.log("before simplification: ", shapePoints.length)
+    const points = shapePoints.map(sp => {
+        return { x: parseFloat(sp.shapePtLon), y: parseFloat(sp.shapePtLat) }
+    });
+
+    const simplifiedShape = simplify(points, .00005);
+    console.log("before simplification: ", simplifiedShape.length)
+    // todo switch to numbers
+    return simplifiedShape.map((ss, index) => {
+        return { shapeId: shapePoints[0]!.shapeId, shapePtLon: ss.x.toString(), shapePtLat: ss.y.toString(), shapePtSequence: index.toString() }
+    });
 }
 
 const encodeXML = (str: string) => {
@@ -133,12 +151,12 @@ export const toKml = async (zipBlob: ArrayBuffer): Promise<string> => {
 
 
     // console.log(shapeToRouteMap);
-
+    // const simplifiedShapes = simplifyShape(shapes);
     const groupedData = groupLinesByShapeId(shapes);
     // console.log("grouped", groupedData);
 
     // Divide i dati in gruppi di 10 o meno
-    const groups = Object.values(groupedData);
+    // const groups = Object.values(groupedData);
     // const maxGroupsPerFile = 3000;
     // const numFiles = Math.ceil(groups.length / maxGroupsPerFile);
 
@@ -151,13 +169,23 @@ export const toKml = async (zipBlob: ArrayBuffer): Promise<string> => {
     Object.entries(shapeToRouteMap).forEach(entry => {
         const shapeId = String(entry[0]).replace(/["']/g, '');
         const routeId = entry[1];
-        console.log(entry)
+        // console.log(entry)
         const routeName = routes[routeId]!;
-        const groups = Object.values(groupedData);
-        const group = groupedData[shapeId]!;
+        // const groups = Object.values(groupedData);
+        const shapePoints = groupedData[shapeId]!;
+        const group = simplifyShape(shapePoints);
+        // const group = groupedData[shapeId]!;
+        console.log(Object.keys(groupedData))
+        if (group == null) {
 
-
-        kml += '\t\t<Placemark>\n' +
+            // console.log("null", shapeId)
+            
+            
+            // console.log(groups)
+        }
+        else {
+            console.log(group[0] ?? "undef")
+            kml += '\t\t<Placemark>\n' +
             `\t\t\t<name>${encodeXML(routeName + " (" + routeId + ")")}</name>\n` + // Aggiunge il nome come shape_id
             //     '<Style>' +
             //     '<LineStyle>' +
@@ -167,10 +195,17 @@ export const toKml = async (zipBlob: ArrayBuffer): Promise<string> => {
             //   '</Style>' +
             '\t\t\t\t<LineString>\n' +
             '\t\t\t\t\t<coordinates>\n' +
-            group.map(row => `\t\t\t\t\t\t\t${parseFloat(row.shapePtLon)},${parseFloat(row.shapePtLat)},0`).join(' \n') + // must have trailing space
+            group.map(row => {
+                if (row == null) {
+                    console.log("undefined")
+                }
+                return `\t\t\t\t\t\t\t${parseFloat(row.shapePtLon)},${parseFloat(row.shapePtLat)},0`
+            }).join(' \n') + // must have trailing space
             '\t\t\t\t\t</coordinates>\n' +
             '\t\t\t\t</LineString>\n' +
             '\t\t</Placemark>\n';
+        }
+
     })
 
     kml += '\t</Document>\n</kml>';

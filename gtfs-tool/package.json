@@ -2,6 +2,7 @@
   "name": "gtfs-tool",
   "version": "1.0.0",
   "description": "converter for GTFS",
+  "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
@@ -15,13 +16,16 @@
     "prebuild": "npm run clean",
     "build": "tsc",
     "preversion": "npm run build",
-    "postversion": "git push --follow-tags"
+    "postversion": "git push --follow-tags",
+    "test": "vitest"
   },
   "author": "rzca",
   "license": "ISC",
   "devDependencies": {
+    "@types/node": "^22.10.1",
     "rimraf": "^5.0.10",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.5"
   },
   "dependencies": {
     "jszip": "^3.10.1"

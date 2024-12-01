@@ -1,5 +1,6 @@
 {
   "name": "gtfs-tool-app",
+  "homepage": "https://rzca.github.io/gtfstool",
   "private": true,
   "version": "0.0.0",
   "type": "module",

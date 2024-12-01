@@ -1,6 +1,6 @@
 {
   "name": "gtfs-tool",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "converter for GTFS",
   "type": "module",
   "main": "./dist/index.js",

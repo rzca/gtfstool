@@ -4,92 +4,177 @@ export const add = (a: number, b: number) => a + b;
 
 const loadRoutes = (text: string) => {
     const rows = text.split("\n").map(line => line.split(","));
-    const routes: { [routeName: string]: string} = {};
+    const routes: { [routeName: string]: string } = {};
 
     for (let i = 1; i < rows.length; i++) {
-        if (rows[i] != null) {
+        if (rows[i] != null && rows[i]![0] != null) {
+            // console.log(rows[i])
             const [raw_route_id, agency_id, route_short_name, route_long_name] = rows[i]!;
             const route_id = raw_route_id!.replace(/["']/g, '');
             routes[route_id] = route_long_name!;
         }
 
     }
+    return routes;
+}
+
+interface IShape {
+    shapeId: string;
+    shapePtLat: string;
+    shapePtLon: string;
+    shapePtSequence: string;
+}
+
+const loadShapes = (text: string): IShape[] => {
+    const rows = text.split("\n").map(line => line.split(","));
+
+    const data = [];
+    for (let i = 1; i < rows.length; i++) { // Inizia da 1 per saltare l'intestazione
+        const row = rows[i];
+        // console.log(row)
+        if (row != null && row.length > 4) {
+            const [shape_id, shape_pt_lat, shape_pt_lon, shape_pt_sequence] = row;
+            // Rimuovi le virgolette da shape_pt_lat e shape_pt_lon
+            const cleaned_lat = shape_pt_lat!.replace(/"/g, '');
+            const cleaned_lon = shape_pt_lon!.replace(/"/g, '');
+
+            const shapeId = shape_id!;
+            const shapePtSequence = shape_pt_sequence!;
+            const shapePtLat = cleaned_lat;
+            const shapePtLon = cleaned_lon;
+
+            data.push({
+                shapeId,
+                shapePtLat,
+                shapePtLon,
+                shapePtSequence,
+            });
+        }
+    }
+    return data;
+}
+
+const loadTrips = (text: string) => {
+    const rows = text.split("\n").map(line => line.split(","));
+
+    const shapeToRouteMap: { [cleanedShapeId: string]: string } = {};
+
+    for (let i = 1; i < rows.length; i++) {
+        if (rows[i] != null && rows[i]?.length != null && rows[i]!.length > 6) {
+            // console.log(rows[i])
+            const [unkn, route_id, service_id, trip_id, direction_id] = rows[i]!;
+            const shape_id = rows[i]![7]!;
+            const cleanedRouteId = route_id!.replace(/["']/g, ''); // Rimuovi le virgolette
+            if (shape_id !== undefined) {
+                const cleanedShapeId = shape_id.replace(/["']/g, ''); // Rimuovi le virgolette
+                if (cleanedShapeId !== undefined) {
+                    // console.log("shape", shape_id, cleanedShapeId, "route", cleanedRouteId)
+                    shapeToRouteMap[cleanedShapeId] = cleanedRouteId;
+                }
+            }
+        }
+    }
+    // console.log(shapeToRouteMap)
+    return shapeToRouteMap;
+}
+
+const groupLinesByShapeId = (data: { shapeId: string }[]): { [shapeId: string]: IShape[] } => {
+    const groupedData: { [shapeId: string]: any[] } = {};
+
+    data.forEach((row) => {
+        const shapeId = row.shapeId;
+        if (!groupedData[shapeId]) {
+            groupedData[shapeId] = [];
+        }
+
+        groupedData[shapeId]!.push(row);
+    });
+    return groupedData;
+}
+
+const encodeXML = (str: string) => {
+    return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&apos;');
 }
 
 export const toKml = async (zipBlob: ArrayBuffer): Promise<string> => {
     var jsZip = new JSZip();
 
     const data = await jsZip.loadAsync(zipBlob);
+    if (data == undefined) {
+        return "";
+    }
+
+    const routesFile = data.files["routes.txt"];
+    const str = await routesFile?.async("string")!;
+    const routes = loadRoutes(str);
+    console.log(routes);
+
+    const shapesFile = data.files["shapes.txt"];
+    const shapesStr = await shapesFile?.async("string")!;
+    const shapes = loadShapes(shapesStr);
+    // console.log(shapes);
+
+    const tripsFile = data.files["trips.txt"];
+    const tripsStr = await tripsFile?.async("string")!;
+    const shapeToRouteMap = loadTrips(tripsStr);
+    // console.log("trips:")
 
 
 
-    // const shapesInput = document.getElementById("shapesInput");
+    if (routesFile == undefined) {
+        console.log("routes file undefined");
+    }
 
-    // const routes = await loadRoutesFile();
-    //         const shapeToRouteMap = await loadTripsFile();
-    //             const shapes = await loadShapesFile();
+
 
     // console.log(shapeToRouteMap);
 
-    // const groupedData = groupLinesByShapeId(shapes);
+    const groupedData = groupLinesByShapeId(shapes);
+    // console.log("grouped", groupedData);
 
-    // // Divide i dati in gruppi di 10 o meno
-    // const groups = Object.values(groupedData);
+    // Divide i dati in gruppi di 10 o meno
+    const groups = Object.values(groupedData);
     // const maxGroupsPerFile = 3000;
     // const numFiles = Math.ceil(groups.length / maxGroupsPerFile);
 
 
-    // var progress=0;
+    // var progress = 0;
+    var kml = '<?xml version="1.0" encoding="UTF-8"?>\n' +
+        '<kml xmlns="http://www.opengis.net/kml/2.2">\n' +
+        '\t<Document>\n';
 
-    // for (let i = 0; i < numFiles; i++) {
-    //     const startIdx = i * maxGroupsPerFile;
-    //     const endIdx = startIdx + maxGroupsPerFile;
-    //     const fileGroups = groups.slice(startIdx, endIdx);
-
-    var kml = '<?xml version="1.0" encoding="UTF-8"?>' +
-        '<kml xmlns="http://www.opengis.net/kml/2.2">' +
-        '<Document>' +
-        '<Folder>' +
-        '<name>Linee</name>';
-
-    // fileGroups.forEach(group => {
-    // progress++;
-    //shapesStatus.innerHTML = progress;
-    // console.log(progress);
-    // const shapeId = String(group[0].shape_id).replace(/["']/g, '');
-    // const routeId = shapeToRouteMap[shapeId];
-
-    // Cerca il nome nel file routes basato su shape_id
-    // const routeName = routes[routeId];
-    const points: { lat: number, lon: number }[] = [{ lat: 12, lon: 100 }, { lat: 12, lon: 101 }, { lat: 13, lon: 101 }];
-    const route = { routeName: "route", points };
-
-    //console.log(shapeId, routeId, routeName);
-
-    kml += '<Placemark>' +
-        `<name>${route.routeName}</name>` + // Aggiunge il nome come shape_id
-        '<LineString>' +
-        '<coordinates>' +
-        // group.map(row => `${parseFloat(row.shape_pt_lon)},${parseFloat(row.shape_pt_lat)},0`).join(' ') +
-        route.points.map(point => `${point.lon},${point.lat},0`).join(' ') +
-        '</coordinates>' +
-        '</LineString>' +
-        '</Placemark>';
+    Object.entries(shapeToRouteMap).forEach(entry => {
+        const shapeId = String(entry[0]).replace(/["']/g, '');
+        const routeId = entry[1];
+        console.log(entry)
+        const routeName = routes[routeId]!;
+        const groups = Object.values(groupedData);
+        const group = groupedData[shapeId]!;
 
 
+        kml += '\t\t<Placemark>\n' +
+            `\t\t\t<name>${encodeXML(routeName + " (" + routeId + ")")}</name>\n` + // Aggiunge il nome come shape_id
+            //     '<Style>' +
+            //     '<LineStyle>' +
+            //       '<color>7f00ff00</color>' +
+            //       '<width>8</width>' +
+            //     '</LineStyle>' +
+            //   '</Style>' +
+            '\t\t\t\t<LineString>\n' +
+            '\t\t\t\t\t<coordinates>\n' +
+            group.map(row => `\t\t\t\t\t\t\t${parseFloat(row.shapePtLon)},${parseFloat(row.shapePtLat)},0`).join(' \n') + // must have trailing space
+            '\t\t\t\t\t</coordinates>\n' +
+            '\t\t\t\t</LineString>\n' +
+            '\t\t</Placemark>\n';
+    })
 
-    kml += '</Folder></Document></kml>';
+    kml += '\t</Document>\n</kml>';
 
     return kml;
-    // Creazione di un oggetto Blob per il file KML
-    // const kmlBlob = new Blob([kml], { type: "application/vnd.google-earth.kml+xml" });
 
-    // Creazione di un nome file univoco
-    // const fileNameKML = `output_${i + 1}.kml`;
-
-    // Salvataggio del file KML usando FileSaver.js
-
-    // saveAs(kmlBlob, fileNameKML);
 }
-
-

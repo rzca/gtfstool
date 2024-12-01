@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "gtfs-tool": "file:../gtfs-tool/gtfs-tool-1.0.5.tgz",
+    "gtfs-tool": "file:../gtfs-tool/gtfs-tool-1.0.6.tgz",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

@@ -1,6 +1,8 @@
 import JSZip from "jszip";
 import simplify from "simplify-js";
 
+// TODO switch to column names not positions
+
 export const add = (a: number, b: number) => a + b;
 
 const loadRoutes = (text: string) => {
@@ -60,14 +62,14 @@ const loadShapes = (text: string): IShapePoint[] => {
 
 const loadTrips = (text: string) => {
     const rows = text.split("\n").map(line => line.split(","));
+    console.log(rows)
 
     const shapeToRouteMap: { [cleanedShapeId: string]: string } = {};
 
     for (let i = 1; i < rows.length; i++) {
         if (rows[i] != null && rows[i]?.length != null && rows[i]!.length > 6) {
             // console.log(rows[i])
-            const [unkn, route_id, service_id, trip_id, direction_id] = rows[i]!;
-            const shape_id = rows[i]![7]!;
+            const [trip_id, route_id, service_id, trip_headsign, direction_id, block_id, shape_id] = rows[i]!;
             const cleanedRouteId = route_id!.replace(/["']/g, ''); // Rimuovi le virgolette
             if (shape_id !== undefined) {
                 const cleanedShapeId = shape_id.replace(/["']/g, ''); // Rimuovi le virgolette
@@ -78,7 +80,7 @@ const loadTrips = (text: string) => {
             }
         }
     }
-    // console.log(shapeToRouteMap)
+    console.log(shapeToRouteMap)
     return shapeToRouteMap;
 }
 
@@ -104,8 +106,6 @@ const simplifyShape = (shapePoints: IShapePoint[]): IShapePoint[] => {
 
     const simplifiedShape = simplify(points, .00003); // seems to work
 
-    // console.log("before simplification:", shapePoints.length, "after:", simplifiedShape.length)
-    // todo switch to numbers
     return simplifiedShape.map((ss, index) => {
         return { shapeId: shapePoints[0]!.shapeId, shapePtLon: ss.x.toString(), shapePtLat: ss.y.toString(), shapePtSequence: index.toString() }
     });
@@ -129,14 +129,7 @@ export const toKml = async (zipBlob: ArrayBuffer): Promise<string> => {
     }
 
     const routesFile = data.files["routes.txt"];
-    // console.log(data.files)
-    const str = await routesFile?.async("string");
-    const ssd = await routesFile?.async("text");
-    // console.log("routes", ssd);
-    if (ssd == null) {
-        console.log("str is null", ssd);
-        console.log(data.files);
-    }
+    const str = await routesFile?.async("string")!;
     const routes = loadRoutes(str);
 
 
@@ -148,18 +141,10 @@ export const toKml = async (zipBlob: ArrayBuffer): Promise<string> => {
     const tripsFile = data.files["trips.txt"];
     const tripsStr = await tripsFile?.async("string")!;
     const shapeToRouteMap = loadTrips(tripsStr);
-    // console.log("trips:")
 
-    // console.log(shapeToRouteMap);
-    // const simplifiedShapes = simplifyShape(shapes);
+    console.log(shapeToRouteMap)
+
     const groupedData = groupLinesByShapeId(shapes);
-    // console.log("grouped", groupedData);
-
-    // Divide i dati in gruppi di 10 o meno
-    // const groups = Object.values(groupedData);
-    // const maxGroupsPerFile = 3000;
-    // const numFiles = Math.ceil(groups.length / maxGroupsPerFile);
-
 
     // var progress = 0;
     var kml = '<?xml version="1.0" encoding="UTF-8"?>\n' +

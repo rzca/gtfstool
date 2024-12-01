@@ -47,7 +47,7 @@ function App() {
       <h1>GTFS to KML Converter</h1>
       <div className="card">
         <input type="file" onChange={e => e.target.files != null ? handleFileUpload(e.target.files) : undefined} />
-        <div>kml: {kml}</div>
+        {kml != null && <div> {kml}</div>}
         {err != null && <div>{err}</div>}
       </div>
 

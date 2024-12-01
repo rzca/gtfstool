@@ -1,0 +1,2 @@
+service_id,date,exception_type
+weekend_service,20220717,2

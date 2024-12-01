@@ -1,0 +1,4 @@
+route_id,service_id,trip_id,trip_headsign,direction_id,shape_id
+303-20670,weekend_service,60270564,"MAX ORANGE SADDLETOWNE",0,3030026
+303-20670,weekend_service,60270565,"MAX ORANGE BRENTWOOD",1,3030027
+303-20670,weekend_service,60270566,"MAX ORANGE BRENTWOOD",1,3030027

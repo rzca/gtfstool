@@ -4,6 +4,9 @@ import simplify from "simplify-js";
 export const add = (a: number, b: number) => a + b;
 
 const loadRoutes = (text: string) => {
+    if (text == null) {
+        console.log("Zzzz")
+    }
     const rows = text.split("\n").map(line => line.split(","));
     const routes: { [routeName: string]: string } = {};
 
@@ -88,8 +91,6 @@ const groupLinesByShapeId = (data: IShapePoint[]): { [shapeId: string]: IShapePo
             groupedData[shapeId] = [];
         }
 
-        // const simplifiedShapePoints = simplifyShape(row)
-
         groupedData[shapeId]!.push(row);
     });
 
@@ -97,13 +98,13 @@ const groupLinesByShapeId = (data: IShapePoint[]): { [shapeId: string]: IShapePo
 }
 
 const simplifyShape = (shapePoints: IShapePoint[]): IShapePoint[] => {
-    console.log("before simplification: ", shapePoints.length)
     const points = shapePoints.map(sp => {
         return { x: parseFloat(sp.shapePtLon), y: parseFloat(sp.shapePtLat) }
     });
 
-    const simplifiedShape = simplify(points, .00005);
-    console.log("before simplification: ", simplifiedShape.length)
+    const simplifiedShape = simplify(points, .00003); // seems to work
+
+    // console.log("before simplification:", shapePoints.length, "after:", simplifiedShape.length)
     // todo switch to numbers
     return simplifiedShape.map((ss, index) => {
         return { shapeId: shapePoints[0]!.shapeId, shapePtLon: ss.x.toString(), shapePtLat: ss.y.toString(), shapePtSequence: index.toString() }
@@ -128,9 +129,16 @@ export const toKml = async (zipBlob: ArrayBuffer): Promise<string> => {
     }
 
     const routesFile = data.files["routes.txt"];
-    const str = await routesFile?.async("string")!;
+    // console.log(data.files)
+    const str = await routesFile?.async("string");
+    const ssd = await routesFile?.async("text");
+    // console.log("routes", ssd);
+    if (ssd == null) {
+        console.log("str is null", ssd);
+        console.log(data.files);
+    }
     const routes = loadRoutes(str);
-    console.log(routes);
+
 
     const shapesFile = data.files["shapes.txt"];
     const shapesStr = await shapesFile?.async("string")!;
@@ -141,14 +149,6 @@ export const toKml = async (zipBlob: ArrayBuffer): Promise<string> => {
     const tripsStr = await tripsFile?.async("string")!;
     const shapeToRouteMap = loadTrips(tripsStr);
     // console.log("trips:")
-
-
-
-    if (routesFile == undefined) {
-        console.log("routes file undefined");
-    }
-
-
 
     // console.log(shapeToRouteMap);
     // const simplifiedShapes = simplifyShape(shapes);
@@ -175,7 +175,7 @@ export const toKml = async (zipBlob: ArrayBuffer): Promise<string> => {
         const shapePoints = groupedData[shapeId]!;
         const group = simplifyShape(shapePoints);
         // const group = groupedData[shapeId]!;
-        console.log(Object.keys(groupedData))
+        // console.log(Object.keys(groupedData))
         if (group == null) {
 
             // console.log("null", shapeId)
@@ -184,7 +184,7 @@ export const toKml = async (zipBlob: ArrayBuffer): Promise<string> => {
             // console.log(groups)
         }
         else {
-            console.log(group[0] ?? "undef")
+            // console.log(group[0] ?? "undef")
             kml += '\t\t<Placemark>\n' +
             `\t\t\t<name>${encodeXML(routeName + " (" + routeId + ")")}</name>\n` + // Aggiunge il nome come shape_id
             //     '<Style>' +
@@ -197,7 +197,7 @@ export const toKml = async (zipBlob: ArrayBuffer): Promise<string> => {
             '\t\t\t\t\t<coordinates>\n' +
             group.map(row => {
                 if (row == null) {
-                    console.log("undefined")
+                    // console.log("undefined")
                 }
                 return `\t\t\t\t\t\t\t${parseFloat(row.shapePtLon)},${parseFloat(row.shapePtLat)},0`
             }).join(' \n') + // must have trailing space

@@ -18,9 +18,9 @@ function App() {
     async function getKml() {
       if (buf != undefined) {
         try {
-          const kml = await toKml(buf);
+          const res = await toKml(buf);
 
-          const kmlBlob = new Blob([kml], { type: "application/vnd.google-earth.kml+xml" });
+          const kmlBlob = new Blob([res.kml], { type: "application/vnd.google-earth.kml+xml" });
           const url = window.URL.createObjectURL(kmlBlob);
           const a = document.createElement('a');
 
@@ -45,6 +45,7 @@ function App() {
   const handleFileUpload = async (files: FileList) => {
     if (files[0] != null) {
       setIsLoading(true);
+      setErr(undefined);
       setFilename(files[0].name);
       const file = files[0];
       const buffer = await file.arrayBuffer();

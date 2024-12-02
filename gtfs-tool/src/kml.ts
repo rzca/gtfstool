@@ -1,91 +1,106 @@
 import JSZip from "jszip";
 import simplify from "simplify-js";
+import { csvParse } from "d3-dsv";
+import { encodeXML } from "./utils";
 
-// TODO switch to column names not positions
-
-export const add = (a: number, b: number) => a + b;
-
-const loadRoutes = (text: string) => {
-    if (text == null) {
-        console.log("Zzzz")
-    }
-    const rows = text.split("\n").map(line => line.split(","));
-    const routes: { [routeName: string]: string } = {};
-
-    for (let i = 1; i < rows.length; i++) {
-        if (rows[i] != null && rows[i]![0] != null) {
-            // console.log(rows[i])
-            const [raw_route_id, agency_id, route_short_name, route_long_name] = rows[i]!;
-            const route_id = raw_route_id!.replace(/["']/g, '');
-            routes[route_id] = route_long_name!;
-        }
-
-    }
-    return routes;
+interface IRoute {
+    routeId: string;
+    routeLongName: string;
+    routeColor?: string
 }
 
 interface IShapePoint {
     shapeId: string;
-    shapePtLat: string;
-    shapePtLon: string;
-    shapePtSequence: string;
+    shapePtLat: number;
+    shapePtLon: number;
+    shapePtSequence: number;
+}
+
+const loadRoutes = (text: string): { [routeId: string]: IRoute } => {
+    const agencyField = "agency_id";
+    const routeIdField = "route_id";
+    const routeShortNameField = "route_short_name";
+    const routeLongNameField = "route_long_name";
+    const routeTypeField = "route_type";
+    const routeUrlField = "route_url";
+    const routeColorField = "route_color";
+    const routeTextColorField = "route_text_color";
+
+    if (text == null) {
+        console.log("Zzzz")
+    }
+    const routes: { [routeName: string]: IRoute } = {};
+
+    const rs = csvParse(text);
+    rs.forEach(r => {
+        console.log(r)
+        const routeId = r[routeIdField]?.replace(/["']/g, '');
+        const routeLongName = r[routeLongNameField]?.replace(/["']/g, '');
+        const routeColor = r[routeColorField]?.replace(/["']/g, '');
+
+        if (routeId == null || routeLongName == null) {
+            console.error("route_id or route_name cannot be undefined", r);
+        }
+        else {
+            routes[routeId!] = { routeId, routeLongName, routeColor };
+        }
+    })
+    return routes;
 }
 
 const loadShapes = (text: string): IShapePoint[] => {
-    const rows = text.split("\n").map(line => line.split(","));
+    const shapeIdField = "shape_id";
+    const shapePtLatField = "shape_pt_lat";
+    const shapePtLonField = "shape_pt_lon";
+    const shapePtSequenceField = "shape_pt_sequence";
 
-    const data = [];
-    for (let i = 1; i < rows.length; i++) { // Inizia da 1 per saltare l'intestazione
-        const row = rows[i];
-        // console.log(row)
-        if (row != null && row.length > 4) {
-            const [shape_id, shape_pt_lat, shape_pt_lon, shape_pt_sequence] = row;
-            // Rimuovi le virgolette da shape_pt_lat e shape_pt_lon
-            const cleaned_lat = shape_pt_lat!.replace(/"/g, '');
-            const cleaned_lon = shape_pt_lon!.replace(/"/g, '');
+    const rs = csvParse(text);
+    const data: IShapePoint[] = [];
+    rs.forEach(r => {
+        const shapeId = r[shapeIdField];
+        const shapePtLat = r[shapePtLatField]?.replace(/"/g, '');
+        const shapePtLon = r[shapePtLonField]?.replace(/"/g, '');
+        const shapePtSequence = r[shapePtSequenceField];
 
-            const shapeId = shape_id!;
-            const shapePtSequence = shape_pt_sequence!;
-            const shapePtLat = cleaned_lat;
-            const shapePtLon = cleaned_lon;
-
+        if (shapeId == null || shapePtLat == null || shapePtLon == null || shapePtSequence == null) {
+            console.error("cannot have undefined shapes", r)
+        } else {
             data.push({
                 shapeId,
-                shapePtLat,
-                shapePtLon,
-                shapePtSequence,
+                shapePtLat: parseFloat(shapePtLat),
+                shapePtLon: parseFloat(shapePtLon),
+                shapePtSequence: parseInt(shapePtSequence),
             });
         }
-    }
+    })
+
     return data;
 }
 
 const loadTrips = (text: string) => {
-    const rows = text.split("\n").map(line => line.split(","));
-    console.log(rows)
+    const routeIdField = "route_id";
+    const shapeIdField = "shape_id";
+
+    const rs = csvParse(text);
 
     const shapeToRouteMap: { [cleanedShapeId: string]: string } = {};
 
-    for (let i = 1; i < rows.length; i++) {
-        if (rows[i] != null && rows[i]?.length != null && rows[i]!.length > 6) {
-            // console.log(rows[i])
-            const [trip_id, route_id, service_id, trip_headsign, direction_id, block_id, shape_id] = rows[i]!;
-            const cleanedRouteId = route_id!.replace(/["']/g, ''); // Rimuovi le virgolette
-            if (shape_id !== undefined) {
-                const cleanedShapeId = shape_id.replace(/["']/g, ''); // Rimuovi le virgolette
-                if (cleanedShapeId !== undefined) {
-                    // console.log("shape", shape_id, cleanedShapeId, "route", cleanedRouteId)
-                    shapeToRouteMap[cleanedShapeId] = cleanedRouteId;
-                }
-            }
+    rs.forEach(r => {
+        const routeId = r[routeIdField]?.replace(/["']/g, '');
+        const shapeId = r[shapeIdField]?.replace(/["']/g, '');
+        if (routeId == null || shapeId == null) {
+            console.error("cannot have null route_id or shape_id", r);
+        } else {
+            console.log("dd", routeId, shapeId)
+            shapeToRouteMap[shapeId] = routeId;
         }
-    }
-    console.log(shapeToRouteMap)
+    })
+
     return shapeToRouteMap;
 }
 
 const groupLinesByShapeId = (data: IShapePoint[]): { [shapeId: string]: IShapePoint[] } => {
-    const groupedData: { [shapeId: string]: any[] } = {};
+    const groupedData: { [shapeId: string]: IShapePoint[] } = {};
 
     data.forEach((row) => {
         const shapeId = row.shapeId;
@@ -101,37 +116,30 @@ const groupLinesByShapeId = (data: IShapePoint[]): { [shapeId: string]: IShapePo
 
 const simplifyShape = (shapePoints: IShapePoint[]): IShapePoint[] => {
     const points = shapePoints.map(sp => {
-        return { x: parseFloat(sp.shapePtLon), y: parseFloat(sp.shapePtLat) }
+        return { x: sp.shapePtLon, y: sp.shapePtLat }
     });
 
     const simplifiedShape = simplify(points, .00003); // seems to work
 
     return simplifiedShape.map((ss, index) => {
-        return { shapeId: shapePoints[0]!.shapeId, shapePtLon: ss.x.toString(), shapePtLat: ss.y.toString(), shapePtSequence: index.toString() }
+        return { shapeId: shapePoints[0]!.shapeId, shapePtLon: ss.x, shapePtLat: ss.y, shapePtSequence: index }
     });
 }
 
-const encodeXML = (str: string) => {
-    return str
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&apos;');
+
+interface IKmlResponse {
+    kml: string,
+    // routes: {[routeId: string]: IRoute}
 }
 
-export const toKml = async (zipBlob: ArrayBuffer): Promise<string> => {
+export const toKml = async (zipBlob: ArrayBuffer): Promise<IKmlResponse> => {
     var jsZip = new JSZip();
 
     const data = await jsZip.loadAsync(zipBlob);
-    if (data == undefined) {
-        return "";
-    }
 
     const routesFile = data.files["routes.txt"];
     const str = await routesFile?.async("string")!;
     const routes = loadRoutes(str);
-
 
     const shapesFile = data.files["shapes.txt"];
     const shapesStr = await shapesFile?.async("string")!;
@@ -142,59 +150,55 @@ export const toKml = async (zipBlob: ArrayBuffer): Promise<string> => {
     const tripsStr = await tripsFile?.async("string")!;
     const shapeToRouteMap = loadTrips(tripsStr);
 
-    console.log(shapeToRouteMap)
-
     const groupedData = groupLinesByShapeId(shapes);
 
-    // var progress = 0;
     var kml = '<?xml version="1.0" encoding="UTF-8"?>\n' +
         '<kml xmlns="http://www.opengis.net/kml/2.2">\n' +
         '\t<Document>\n';
 
     Object.entries(shapeToRouteMap).forEach(entry => {
-        const shapeId = String(entry[0]).replace(/["']/g, '');
+        const shapeId = entry[0].replace(/["']/g, '');
         const routeId = entry[1];
-        // console.log(entry)
-        const routeName = routes[routeId]!;
-        // const groups = Object.values(groupedData);
-        const shapePoints = groupedData[shapeId]!;
-        const group = simplifyShape(shapePoints);
-        // const group = groupedData[shapeId]!;
-        // console.log(Object.keys(groupedData))
-        if (group == null) {
 
-            // console.log("null", shapeId)
-            
-            
-            // console.log(groups)
+        const routeInfo = routes[routeId];
+
+
+        const shapePoints = groupedData[shapeId];
+
+        // if there are no shapePoints for the specified shape, then do nothing
+        if (shapePoints == null || routeInfo == null) {
         }
         else {
+            const group = simplifyShape(shapePoints);
+
+            const hexColorSixDigit = routeInfo?.routeColor?.replace("#", "");
+
+            const colorString =
+                '\t\t\t<Style>\n' +
+                '\t\t\t\t<LineStyle>\n' +
+                `\t\t\t\t\t<color>ff${hexColorSixDigit}</color>\n` +
+                '\t\t\t\t\t<width>4</width>\n' +
+                '\t\t\t\t</LineStyle>\n' +
+                '\t\t\t</Style>\n';
+
             // console.log(group[0] ?? "undef")
             kml += '\t\t<Placemark>\n' +
-            `\t\t\t<name>${encodeXML(routeName + " (" + routeId + ")")}</name>\n` + // Aggiunge il nome come shape_id
-            //     '<Style>' +
-            //     '<LineStyle>' +
-            //       '<color>7f00ff00</color>' +
-            //       '<width>8</width>' +
-            //     '</LineStyle>' +
-            //   '</Style>' +
-            '\t\t\t\t<LineString>\n' +
-            '\t\t\t\t\t<coordinates>\n' +
-            group.map(row => {
-                if (row == null) {
-                    // console.log("undefined")
-                }
-                return `\t\t\t\t\t\t\t${parseFloat(row.shapePtLon)},${parseFloat(row.shapePtLat)},0`
-            }).join(' \n') + // must have trailing space
-            '\t\t\t\t\t</coordinates>\n' +
-            '\t\t\t\t</LineString>\n' +
-            '\t\t</Placemark>\n';
+                `\t\t\t<name>${encodeXML(routeInfo.routeLongName + " (" + routeInfo.routeId + ")")}</name>\n` +
+                `${colorString != null ? colorString : ''}` +
+                '\t\t\t\t<LineString>\n' +
+                '\t\t\t\t\t<coordinates>\n' +
+                group.map(row => {
+                    return `\t\t\t\t\t\t\t${row.shapePtLon},${row.shapePtLat},0`
+                }).join(' \n') + // must have trailing space
+                '\n\t\t\t\t\t</coordinates>\n' +
+                '\t\t\t\t</LineString>\n' +
+                '\t\t</Placemark>\n';
         }
 
     })
 
     kml += '\t</Document>\n</kml>';
 
-    return kml;
+    return { kml };
 
 }

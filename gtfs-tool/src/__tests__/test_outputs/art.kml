@@ -3,6 +3,12 @@
 	<Document>
 		<Placemark>
 			<name>Shirlingtn-Ballstn-Virginia Sq (75)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.102949,38.882443,0 
@@ -215,11 +221,18 @@
 							-77.08823,38.83941,0 
 							-77.08786,38.83902,0 
 							-77.08726,38.83967,0 
-							-77.087069,38.839731,0					</coordinates>
+							-77.087069,38.839731,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Arlington Mill-Ballston-Crthous (41)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.084807,38.890681,0 
@@ -373,11 +386,18 @@
 							-77.113747,38.858575,0 
 							-77.112926,38.856925,0 
 							-77.112655,38.85653,0 
-							-77.112605,38.856304,0					</coordinates>
+							-77.112605,38.856304,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Ballston-Virginia Hosp- Langston (51)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.111615,38.881724,0 
@@ -437,11 +457,18 @@
 							-77.13369,38.89633,0 
 							-77.13367,38.89607,0 
 							-77.13354,38.89575,0 
-							-77.133595,38.895721,0					</coordinates>
+							-77.133595,38.895721,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Shirlingtn-Lyon Park-Courthouse (77)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.087266,38.839523,0 
@@ -605,11 +632,18 @@
 							-77.08599,38.89068,0 
 							-77.08536,38.89123,0 
 							-77.08523,38.8913,0 
-							-77.085054,38.891309,0					</coordinates>
+							-77.085054,38.891309,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Ballston-Pentagon-Pentagon Cty (42)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.111682,38.881905,0 
@@ -737,11 +771,18 @@
 							-77.05888,38.86467,0 
 							-77.05946,38.86348,0 
 							-77.05966,38.86264,0 
-							-77.0598,38.8625,0					</coordinates>
+							-77.0598,38.8625,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Ballston-Pentagon-Pentagon Cty (42)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.054613,38.868434,0 
@@ -894,11 +935,18 @@
 							-77.10906,38.87996,0 
 							-77.11032,38.87996,0 
 							-77.111568,38.880108,0 
-							-77.111682,38.881905,0					</coordinates>
+							-77.111682,38.881905,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Ballston-VA Hosp-E Flls Chrch (52)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.156807,38.886711,0 
@@ -1061,11 +1109,18 @@
 							-77.10946,38.88248,0 
 							-77.10919,38.88102,0 
 							-77.111483,38.881035,0 
-							-77.111615,38.881724,0					</coordinates>
+							-77.111615,38.881724,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Shirlingtn-Lyon Park-Courthouse (77)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.085054,38.891309,0 
@@ -1224,11 +1279,18 @@
 							-77.08823,38.83941,0 
 							-77.08786,38.83902,0 
 							-77.08746,38.83946,0 
-							-77.087266,38.839523,0					</coordinates>
+							-77.087266,38.839523,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Arlington Mill-Ballston-Crthous (41)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.11261,38.85662,0 
@@ -1345,11 +1407,18 @@
 							-77.08599,38.89068,0 
 							-77.08536,38.89123,0 
 							-77.08523,38.8913,0 
-							-77.085054,38.891309,0					</coordinates>
+							-77.085054,38.891309,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Ballston-Virginia Hosp- Langston (51)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.133595,38.895721,0 
@@ -1403,11 +1472,18 @@
 							-77.11053,38.88225,0 
 							-77.11039,38.88104,0 
 							-77.111555,38.881029,0 
-							-77.111615,38.881724,0					</coordinates>
+							-77.111615,38.881724,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Courthouse-Rosslynn-Crystal Cty (43)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.085054,38.891309,0 
@@ -1459,11 +1535,18 @@
 							-77.05224,38.85984,0 
 							-77.051,38.85989,0 
 							-77.05113,38.85866,0 
-							-77.051236,38.858569,0					</coordinates>
+							-77.051236,38.858569,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>26th St S &amp; S Troy St-Pentagon (87A)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.075187,38.848476,0 
@@ -1557,11 +1640,18 @@
 							-77.052729,38.869715,0 
 							-77.052873,38.869692,0 
 							-77.054574,38.868403,0 
-							-77.054613,38.868434,0					</coordinates>
+							-77.054613,38.868434,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Arlington Vlg-Arlington Vw-Pent (74)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.0598,38.8625,0 
@@ -1690,11 +1780,18 @@
 							-77.05934,38.86379,0 
 							-77.05946,38.86348,0 
 							-77.05966,38.86264,0 
-							-77.0598,38.8625,0					</coordinates>
+							-77.0598,38.8625,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Arlington Mill-Ballston-Crthous (41)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.112605,38.856304,0 
@@ -1814,11 +1911,18 @@
 							-77.08548,38.89081,0 
 							-77.08527,38.89072,0 
 							-77.08489,38.89074,0 
-							-77.084807,38.890681,0					</coordinates>
+							-77.084807,38.890681,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Shirlingtn-Army Navy Dr-Pentagn (87)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.0598,38.8625,0 
@@ -1961,11 +2065,18 @@
 							-77.08823,38.83941,0 
 							-77.08786,38.83902,0 
 							-77.08746,38.83946,0 
-							-77.087266,38.839523,0					</coordinates>
+							-77.087266,38.839523,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Arlington Mill-Ballston-Crthous (41)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.085054,38.891309,0 
@@ -2127,11 +2238,18 @@
 							-77.11371,38.85854,0 
 							-77.11308,38.85724,0 
 							-77.112655,38.85653,0 
-							-77.112605,38.856304,0					</coordinates>
+							-77.112605,38.856304,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Douglas Prk-Green Vly-Pntgn Cty (84)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.0598,38.8625,0 
@@ -2286,11 +2404,18 @@
 							-77.05888,38.86467,0 
 							-77.05946,38.86348,0 
 							-77.059689,38.862486,0 
-							-77.0598,38.8625,0					</coordinates>
+							-77.0598,38.8625,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Arlington Mill -Sequoia-Rosslyn (45)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.112605,38.856304,0 
@@ -2435,11 +2560,18 @@
 							-77.07151,38.89713,0 
 							-77.07156,38.89637,0 
 							-77.07153,38.89559,0 
-							-77.07158,38.895511,0					</coordinates>
+							-77.07158,38.895511,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Rosslyn-East Falls Church (55)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.156706,38.886298,0 
@@ -2574,11 +2706,18 @@
 							-77.07179,38.89812,0 
 							-77.07144,38.8981,0 
 							-77.07151,38.89691,0 
-							-77.071605,38.896714,0					</coordinates>
+							-77.071605,38.896714,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Shirlingtn-Ballstn-Virginia Sq (75)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.087069,38.839731,0 
@@ -2783,11 +2922,18 @@
 							-77.10489,38.88269,0 
 							-77.1033,38.88332,0 
 							-77.10293,38.88261,0 
-							-77.102949,38.882443,0					</coordinates>
+							-77.102949,38.882443,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Rock Spring-Ballston-Shirlingtn (72)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.13681,38.91572,0 
@@ -2980,11 +3126,18 @@
 							-77.08823,38.83941,0 
 							-77.08786,38.83902,0 
 							-77.087605,38.839295,0 
-							-77.087421,38.839365,0					</coordinates>
+							-77.087421,38.839365,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Ballston-Pentagon-Pentagon Cty (42)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.111682,38.881905,0 
@@ -3137,11 +3290,18 @@
 							-77.052572,38.86972,0 
 							-77.052773,38.869725,0 
 							-77.052912,38.869674,0 
-							-77.054613,38.868434,0					</coordinates>
+							-77.054613,38.868434,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Shirlingtn-Lyon Park-Courthouse (77)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.084807,38.890681,0 
@@ -3305,11 +3465,18 @@
 							-77.08823,38.83941,0 
 							-77.08786,38.83902,0 
 							-77.08746,38.83946,0 
-							-77.087266,38.839523,0					</coordinates>
+							-77.087266,38.839523,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Rosslyn-East Falls Church (55)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.071605,38.896714,0 
@@ -3457,11 +3624,18 @@
 							-77.157272,38.886718,0 
 							-77.157272,38.886607,0 
 							-77.157199,38.88652,0 
-							-77.156706,38.886298,0					</coordinates>
+							-77.156706,38.886298,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Courthouse-Rosslynn-Crystal Cty (43)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.051236,38.858569,0 
@@ -3524,11 +3698,18 @@
 							-77.08414,38.89167,0 
 							-77.0852,38.8915,0 
 							-77.08545,38.89141,0 
-							-77.085573,38.891438,0					</coordinates>
+							-77.085573,38.891438,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Military Road - Rosslyn Metro (56)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.07164,38.8957,0 
@@ -3768,11 +3949,18 @@
 							-77.12928,38.92151,0 
 							-77.12795,38.92143,0 
 							-77.12713,38.92155,0 
-							-77.126768,38.921682,0					</coordinates>
+							-77.126768,38.921682,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Douglas Prk-Green Vly-Pntgn Cty (84)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.090601,38.853288,0 
@@ -3917,11 +4105,18 @@
 							-77.08955,38.85326,0 
 							-77.09068,38.85275,0 
 							-77.09067,38.85319,0 
-							-77.090601,38.853288,0					</coordinates>
+							-77.090601,38.853288,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Arlington Mill -Sequoia-Rosslyn (45)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.07158,38.895511,0 
@@ -4092,11 +4287,18 @@
 							-77.11371,38.85854,0 
 							-77.11308,38.85724,0 
 							-77.112655,38.85653,0 
-							-77.112605,38.856304,0					</coordinates>
+							-77.112605,38.856304,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Shirlingtn-Army Navy Dr-Pentagn (87)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.087266,38.839523,0 
@@ -4265,11 +4467,18 @@
 							-77.052729,38.869715,0 
 							-77.052873,38.869692,0 
 							-77.054574,38.868403,0 
-							-77.054613,38.868434,0					</coordinates>
+							-77.054613,38.868434,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Shirlingtn-Lyon Park-Courthouse (77)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.087266,38.839523,0 
@@ -4435,11 +4644,18 @@
 							-77.08548,38.89081,0 
 							-77.08527,38.89072,0 
 							-77.08489,38.89074,0 
-							-77.084807,38.890681,0					</coordinates>
+							-77.084807,38.890681,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Ballston-VA Hosp-E Flls Chrch (52)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.111615,38.881724,0 
@@ -4595,11 +4811,18 @@
 							-77.15638,38.88817,0 
 							-77.156388,38.886469,0 
 							-77.156573,38.886533,0 
-							-77.156807,38.886711,0					</coordinates>
+							-77.156807,38.886711,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>S Lang St-Pentagon (87P)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.06694,38.845785,0 
@@ -4700,11 +4923,18 @@
 							-77.052284,38.869564,0 
 							-77.052548,38.869717,0 
 							-77.052893,38.869688,0 
-							-77.054613,38.868434,0					</coordinates>
+							-77.054613,38.868434,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Rock Spring-Ballston-Shirlingtn (72)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.087421,38.839365,0 
@@ -4898,11 +5128,18 @@
 							-77.13717,38.91512,0 
 							-77.13695,38.91565,0 
 							-77.13688,38.91575,0 
-							-77.13681,38.91572,0					</coordinates>
+							-77.13681,38.91572,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Shirlingtn-Army Navy Dr-Pentagn (87)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.054613,38.868434,0 
@@ -5058,11 +5295,18 @@
 							-77.08823,38.83941,0 
 							-77.08786,38.83902,0 
 							-77.08746,38.83946,0 
-							-77.087266,38.839523,0					</coordinates>
+							-77.087266,38.839523,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Military Road - Rosslyn Metro (56)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.125174,38.923469,0 
@@ -5296,11 +5540,18 @@
 							-77.07151,38.89713,0 
 							-77.07156,38.89637,0 
 							-77.07154,38.895825,0 
-							-77.07164,38.8957,0					</coordinates>
+							-77.07164,38.8957,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Ballston-Pentagon-Pentagon Cty (42)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.0598,38.8625,0 
@@ -5451,11 +5702,18 @@
 							-77.10906,38.87996,0 
 							-77.11032,38.87996,0 
 							-77.11156,38.88011,0 
-							-77.111682,38.881905,0					</coordinates>
+							-77.111682,38.881905,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Arlington Vlg-Arlington Vw-Pent (74)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.087121,38.862047,0 
@@ -5571,11 +5829,18 @@
 							-77.07197,38.86644,0 
 							-77.08705,38.86256,0 
 							-77.08705,38.86218,0 
-							-77.087121,38.862047,0					</coordinates>
+							-77.087121,38.862047,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Shirlingtn-Army Navy Dr-Pentagn (87)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.087266,38.839523,0 
@@ -5719,11 +5984,18 @@
 							-77.05888,38.86467,0 
 							-77.05946,38.86348,0 
 							-77.05966,38.86264,0 
-							-77.0598,38.8625,0					</coordinates>
+							-77.0598,38.8625,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Pentagon-Shirlington Express (87X)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.054613,38.868434,0 
@@ -5787,11 +6059,18 @@
 							-77.08671,38.84074,0 
 							-77.08688,38.84014,0 
 							-77.08726,38.83967,0 
-							-77.087266,38.839523,0					</coordinates>
+							-77.087266,38.839523,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Arlington Mill -Sequoia-Rosslyn (45)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.116983,38.854388,0 
@@ -5980,11 +6259,18 @@
 							-77.07151,38.89713,0 
 							-77.07156,38.89637,0 
 							-77.07153,38.89559,0 
-							-77.07158,38.895511,0					</coordinates>
+							-77.07158,38.895511,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Arlington Mill-Ballston-Crthous (41)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.116983,38.854388,0 
@@ -6143,11 +6429,18 @@
 							-77.08548,38.89081,0 
 							-77.08527,38.89072,0 
 							-77.08489,38.89074,0 
-							-77.084807,38.890681,0					</coordinates>
+							-77.084807,38.890681,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Douglas Prk-Green Vly-Pntgn Cty (84)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.090601,38.853288,0 
@@ -6295,11 +6588,18 @@
 							-77.08955,38.85326,0 
 							-77.09068,38.85275,0 
 							-77.090668,38.85329,0 
-							-77.090601,38.853288,0					</coordinates>
+							-77.090601,38.853288,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Rock Spring-Ballston-Shirlingtn (72)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.110594,38.882127,0 
@@ -6429,11 +6729,18 @@
 							-77.08823,38.83941,0 
 							-77.08786,38.83902,0 
 							-77.087605,38.839295,0 
-							-77.087421,38.839365,0					</coordinates>
+							-77.087421,38.839365,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>26th St S &amp; S Troy St-Pentagon (87A)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.054613,38.868434,0 
@@ -6515,11 +6822,18 @@
 							-77.07432,38.84885,0 
 							-77.07482,38.84872,0 
 							-77.07506,38.84849,0 
-							-77.075187,38.848476,0					</coordinates>
+							-77.075187,38.848476,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>S Lang St-Pentagon (87P)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.054613,38.868434,0 
@@ -6628,11 +6942,18 @@
 							-77.06796,38.84605,0 
 							-77.06698,38.84617,0 
 							-77.06692,38.84593,0 
-							-77.06694,38.845785,0					</coordinates>
+							-77.06694,38.845785,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Arlington Mill-Ballston-Crthous (41)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.116983,38.854388,0 
@@ -6789,11 +7110,18 @@
 							-77.08599,38.89068,0 
 							-77.08536,38.89123,0 
 							-77.08523,38.8913,0 
-							-77.085054,38.891309,0					</coordinates>
+							-77.085054,38.891309,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Douglas Prk-Green Vly-Pntgn Cty (84)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.0598,38.8625,0 
@@ -6888,11 +7216,18 @@
 							-77.09527,38.85129,0 
 							-77.09523,38.85119,0 
 							-77.09162,38.85216,0 
-							-77.09152,38.852136,0					</coordinates>
+							-77.09152,38.852136,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Arlington Vlg-Arlington Vw-Pent (74)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.0598,38.8625,0 
@@ -6996,11 +7331,18 @@
 							-77.08693,38.86108,0 
 							-77.0869,38.86157,0 
 							-77.08694,38.86202,0 
-							-77.086849,38.862021,0					</coordinates>
+							-77.086849,38.862021,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Rock Spring-Ballston-Shirlingtn (72)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.087421,38.839365,0 
@@ -7120,11 +7462,18 @@
 							-77.10906,38.87989,0 
 							-77.10919,38.88102,0 
 							-77.111556,38.881041,0 
-							-77.111587,38.881397,0					</coordinates>
+							-77.111587,38.881397,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 		<Placemark>
 			<name>Arlington Vlg-Arlington Vw-Pent (74)</name>
+			<Style>
+				<LineStyle>
+					<color>ffffffff</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
 				<LineString>
 					<coordinates>
 							-77.087121,38.862047,0 
@@ -7212,7 +7561,8 @@
 							-77.05934,38.86379,0 
 							-77.05946,38.86348,0 
 							-77.05966,38.86264,0 
-							-77.0598,38.8625,0					</coordinates>
+							-77.0598,38.8625,0
+					</coordinates>
 				</LineString>
 		</Placemark>
 	</Document>

@@ -1,6 +1,6 @@
 {
   "name": "gtfs-tool",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "converter for GTFS",
   "type": "module",
   "main": "./dist/index.js",
@@ -32,6 +32,8 @@
     "vitest": "^2.1.5"
   },
   "dependencies": {
+    "@types/d3-dsv": "^3.0.7",
+    "d3-dsv": "^3.0.1",
     "jszip": "^3.10.1",
     "simplify-js": "^1.2.4"
   }

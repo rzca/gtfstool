@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+	<Document>
+		<Placemark>
+			<name>MAX Orange Brentwood/Saddletowne (303-20670)</name>
+			<Style>
+				<LineStyle>
+					<color>ffff8000</color>
+					<width>4</width>
+				</LineStyle>
+			</Style>
+				<LineString>
+					<coordinates>
+							-114.132259,51.086506,0 
+							-114.133205,51.086953,0 
+							-114.133275,51.087029,0 
+							-114.133356,51.087278,0 
+							-114.132663,51.086937,0
+					</coordinates>
+				</LineString>
+		</Placemark>
+	</Document>
+</kml>

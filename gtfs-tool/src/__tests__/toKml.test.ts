@@ -1,4 +1,4 @@
-import { toKml } from "../utils";
+import { toKml } from "../kml";
 import { expect, test } from 'vitest'
 import { readFile, writeFile } from "fs/promises"
 

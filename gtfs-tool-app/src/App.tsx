@@ -9,7 +9,7 @@ function App() {
   const [filename, setFilename] = useState<string | undefined>(undefined);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const kmlFilename= useMemo(() => {
+  const kmlFilename = useMemo(() => {
     const filenameWithoutExtension = filename != null ? filename.split('.')[0] : "gtfs_converter_output";
     return `${filenameWithoutExtension}.kml`
   }, [filename]);
@@ -53,9 +53,13 @@ function App() {
   }
 
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
+    <div style={{ display: "flex", justifyContent: "center", padding: "20px" }}>
       <div style={{ display: "flex", flexDirection: "column" }}>
         <h1>GTFS to KML Converter</h1>
+        <p>This tool can convert <a href="https://gtfs.org/documentation/overview/">GTFS files</a> into <a href="https://pro.arcgis.com/en/pro-app/latest/help/data/kml/what-is-kml-.htm">KML files.</a></p>
+        <p>The resulting KML file will display individual routes and can be uploaded to Google Earth or GIS software.</p>
+        <p>The converter will simplify shapes if needed using <a href="https://mourner.github.io/simplify-js/">simplify-js</a>.</p>
+        <p>Source code, npm package and documentation lives at <a href="https://github.com/rzca/gtfstool">github.com/rzca/gtfstool</a></p>
         <Card>
           <FormGroup
             label="GTFS file"
@@ -64,16 +68,14 @@ function App() {
             <FileInput
               className="gtfs-file-input"
               text={filename ?? "Choose GTFS file..."}
+              inputProps={{ accept: "application/zip" }}
               onInputChange={e => e.currentTarget.files != null ? handleFileUpload(e.currentTarget.files) : undefined} />
           </FormGroup>
           {filename != null && err == null && !isLoading && <Callout intent="success">Download of {kmlFilename} started</Callout>}
-          {filename != null && err != null && !isLoading && <Callout intent="danger">KML conversion failed</Callout>}
-
-          {/* {downloadLink != null && downloadLink} */}
-          {/* {kml != null && <div> {kml}</div>} */}
-          {err != null && <div>{err}</div>}
+          {filename != null && err != null && !isLoading && <Callout intent="danger">KML conversion failed. {err}</Callout>}
         </Card>
       </div>
+
     </div>
   )
 }

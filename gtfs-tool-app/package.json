@@ -6,11 +6,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && rm -rf ../docs && cp -r ./dist ../docs",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@blueprintjs/core": "^5.16.0",
     "gtfs-tool": "file:../gtfs-tool/gtfs-tool-1.0.6.tgz",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
